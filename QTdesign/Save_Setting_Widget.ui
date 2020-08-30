@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Save_Setting_Widget</class>
+ <widget class="QWidget" name="Save_Setting_Widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>201</width>
+    <height>151</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>추출정보설정 </string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../lib/resource/setting_icon.png</normaloff>../lib/resource/setting_icon.png</iconset>
+  </property>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>8</y>
+     <width>171</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+     <horstretch>81</horstretch>
+     <verstretch>16</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>81</width>
+     <height>16</height>
+    </size>
+   </property>
+   <property name="title">
+    <string>추출할 정보 선택</string>
+   </property>
+   <widget class="QCheckBox" name="Check_News">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>81</horstretch>
+      <verstretch>16</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>81</width>
+      <height>16</height>
+     </size>
+    </property>
+    <property name="text">
+     <string>뉴스</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="Check_Image">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>81</horstretch>
+      <verstretch>16</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>81</width>
+      <height>16</height>
+     </size>
+    </property>
+    <property name="text">
+     <string>이미지</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="Check_Cafe">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>81</horstretch>
+      <verstretch>16</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>81</width>
+      <height>16</height>
+     </size>
+    </property>
+    <property name="text">
+     <string>카페</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="Check_Website">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>81</horstretch>
+      <verstretch>16</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>81</width>
+      <height>16</height>
+     </size>
+    </property>
+    <property name="text">
+     <string>웹사이트</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="Check_Company">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>100</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>81</horstretch>
+      <verstretch>16</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>81</width>
+      <height>16</height>
+     </size>
+    </property>
+    <property name="text">
+     <string>기업정보</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="Check_Video">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>20</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>81</horstretch>
+      <verstretch>16</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>81</width>
+      <height>16</height>
+     </size>
+    </property>
+    <property name="text">
+     <string>동영상</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="Check_Wiki">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>40</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>81</horstretch>
+      <verstretch>16</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>81</width>
+      <height>16</height>
+     </size>
+    </property>
+    <property name="text">
+     <string>지식백과</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="Check_Q">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>60</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>81</horstretch>
+      <verstretch>16</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>81</width>
+      <height>16</height>
+     </size>
+    </property>
+    <property name="text">
+     <string>지식인</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="Check_Post">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>80</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>81</horstretch>
+      <verstretch>16</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>81</width>
+      <height>16</height>
+     </size>
+    </property>
+    <property name="text">
+     <string>포스트</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="Check_PInfo">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>100</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>81</horstretch>
+      <verstretch>16</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>81</width>
+      <height>16</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>81</width>
+      <height>16</height>
+     </size>
+    </property>
+    <property name="text">
+     <string>인물정보</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

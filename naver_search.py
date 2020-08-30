@@ -1,9 +1,14 @@
+import datetime
 import sys
 
-from PyQt5.QtWidgets import *
+import requests
 from PyQt5 import QtCore
-from QTdesign.Naver_Search_Form import Ui_MainWindow
+from PyQt5.QtCore import QUrl
 from PyQt5.QtWidgets import *
+from bs4 import BeautifulSoup
+
+from QTdesign.Naver_Search_Form import Ui_MainWindow
+from QTdesign.Save_Setting_Widget import Ui_Save_Setting_Widget
 
 
 class TestForm(QMainWindow, Ui_MainWindow):
@@ -15,35 +20,51 @@ class TestForm(QMainWindow, Ui_MainWindow):
 
     def init_setting(self):
         self.input_search.setFocus(True)
+        # 쓰레드 작업으로 시간 계속 업데이트 필요
+        self.Show_StatusMsg(str(datetime.datetime.now()))
 
     def init_signal(self):
         self.search_btn.clicked.connect(self.Start_Searching)
-        #self.input_search.returnPressed(self.Start_Searching)
+        self.input_search.returnPressed.connect(self.Start_Searching)
         self.DelHis_btn.clicked.connect(self.Delete_History)
         self.his_ext.clicked.connect(self.History_Extraction)
         self.exit_btn.clicked.connect(QtCore.QCoreApplication.instance().quit)
         self.search_his.itemClicked.connect(self.SetForcus_Item)
         self.search_his.itemDoubleClicked.connect(self.DoubleClick_Item)
 
+    def Show_StatusMsg(self, msg):
+        self.statusbar.showMessage(msg)
+
     def Start_Searching(self):
-        pass
+        KeyWord = self.input_search.text().strip()
+        Url = 'https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=' + KeyWord
+        if KeyWord is None or KeyWord == '' or not KeyWord:
+            QMessageBox(self, "Error", '검색어를 입력하세요')
+            self.input_search.setFocus(True)
+            return None
+
+        self.webEngineView.load(QUrl(Url))
+        self.search_his.addItem(KeyWord)
+
+        req = requests.get(Url)
+        soup = BeautifulSoup(req.content, 'html.parser')
+        for i in soup.select('div._prs_nws_all dt'):
+            print(i.text)
 
     def Delete_History(self):
-        pass
+        self.search_his.clear()
 
     def History_Extraction(self):
-        pass
+        Widget=Ui_Save_Setting_Widget()
+        Widget.exec_()
 
     def SetForcus_Item(self):
-        pass
+        self.input_search.setFocus(True)
+        self.input_search.setText(self.search_his.currentItem().text().strip())
 
     def DoubleClick_Item(self):
-        pass
-
-        
-
-
-
+        self.input_search.setText(self.search_his.currentItem().text().strip())
+        self.Start_Searching()
 
 
 if __name__ == "__main__":
