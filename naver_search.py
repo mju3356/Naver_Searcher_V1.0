@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import *
 from bs4 import BeautifulSoup
 
 from QTdesign.Naver_Search_Form import Ui_MainWindow
-from QTdesign.Save_Setting_Widget import Ui_Save_Setting_Widget
+from QTdesign.Save_Setting_Dialog import Ui_Save_Setting_Dialog
 
 
 class TestForm(QMainWindow, Ui_MainWindow):
@@ -18,10 +18,13 @@ class TestForm(QMainWindow, Ui_MainWindow):
         self.init_setting()
         self.init_signal()
 
+
+
     def init_setting(self):
         self.input_search.setFocus(True)
         # 쓰레드 작업으로 시간 계속 업데이트 필요
         self.Show_StatusMsg(str(datetime.datetime.now()))
+        self.Url=None
 
     def init_signal(self):
         self.search_btn.clicked.connect(self.Start_Searching)
@@ -37,17 +40,14 @@ class TestForm(QMainWindow, Ui_MainWindow):
 
     def Start_Searching(self):
         KeyWord = self.input_search.text().strip()
-        Url = 'https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=' + KeyWord
+        self.Url = 'https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=' + KeyWord
         if KeyWord is None or KeyWord == '' or not KeyWord:
-            QMessageBox(self, "Error", '검색어를 입력하세요')
+            QMessageBox.about(self, "Error", '검색어를 입력하세요')
             self.input_search.setFocus(True)
             return None
-
-        self.webEngineView.load(QUrl(Url))
+        self.webEngineView.load(QUrl(self.Url))
         self.search_his.addItem(KeyWord)
 
-        req = requests.get(Url)
-        soup = BeautifulSoup(req.content, 'html.parser')
         for i in soup.select('div._prs_nws_all dt'):
             print(i.text)
 
@@ -55,8 +55,41 @@ class TestForm(QMainWindow, Ui_MainWindow):
         self.search_his.clear()
 
     def History_Extraction(self):
-        Widget=Ui_Save_Setting_Widget()
-        Widget.exec_()
+        #Ssd=Save_Setting_Dialog
+        Ssd=Ui_Save_Setting_Dialog()
+        Ssd.exec_()
+        self.Check_Post=Ssd.Check_Post
+        self.Check_Q=Ssd.Check_Q
+        self.Check_Cafe=Ssd.Check_Cafe
+        self.Check_News=Ssd.Check_News
+        self.Check_Wiki=Ssd.Check_Wiki
+        self.Check_Company=Ssd.Check_Company
+        self.Check_Image=Ssd.Check_Image
+        self.Check_Pinfo=Ssd.Check_PInfo
+        self.Check_Video=Ssd.Check_Video
+        self.Check_Website=Ssd.Check_Website
+        self.Check_Post=Ssd.Check_Post
+        self.Accept=Ssd.Accept
+
+        if not self.Accept:
+            return None
+
+        if not self.Url:
+            QMessageBox.about(self,"Error",'검색어를 입력하세요')
+            return None
+
+        req = requests.get(self.Url)
+        WebData = BeautifulSoup(req.content, 'html.parser')
+
+
+
+
+
+
+
+
+
+
 
     def SetForcus_Item(self):
         self.input_search.setFocus(True)
@@ -65,6 +98,7 @@ class TestForm(QMainWindow, Ui_MainWindow):
     def DoubleClick_Item(self):
         self.input_search.setText(self.search_his.currentItem().text().strip())
         self.Start_Searching()
+        item = self.search_his.takeItem(self.search_his.count()-1)
 
 
 if __name__ == "__main__":
